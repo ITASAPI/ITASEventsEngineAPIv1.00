@@ -23,7 +23,7 @@ Model Header containing AccessToken
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
 |DocumentId|Document ID|`number`||||
-|DocumentPath|Document Path|`string`|200|||
+|DocumentName|Document Name|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
 |LockedBy|Locked By|`string`|255|||
 |DocumentType|Document Type|`string`|30|||
@@ -102,7 +102,7 @@ Model Header containing AccessToken
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
 |DocumentId|Document ID|`number`||||
-|DocumentPath|Document Path|`string`|200|||
+|DocumentName|Document Name|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
 |LockedBy|Locked By|`string`|255|||
 |DocumentType|Document Type|`string`|30|||
@@ -164,6 +164,48 @@ Model Header containing AccessToken
 + Response 404 (application/json)
     + Attributes (404 RequestIdResponse)
 
+
+## Index Document [/DocMan/IndexDocument]
+`POST` Index Document
+
+### Index Document [POST]
+
+<b>Request Body</b>
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|DocumentName|Document Name|`string`|200|||
+|TradingEntityId|Trading Entity ID|`string`|2|||
+|DocumentType|Document Type|`string`|30|||
+|CounterpartyCode|Counterparty Code|`string`|10|||
+|ContractId|Contract ID|`string`|10|||
+|DocumentReference|Document Reference|`string`|9|||
+|WIPAccountCode|WIP Account Code|`string`|11|||
+|CommodityCode|Pricipal Commodity Code|`string`|3|||
+
+<b>Response Data</b>
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|IndexId|Index ID|`number`||||
+
++ Request (application/json)
+    + Header
+
+            AccessToken: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
+
+
+    + Attributes (IndexDocument)
+
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes 
+        + Data (IndexId)
+        + Response (201 CreateResponse)
+
++ Response 400 (application/json)
+    + Attributes (400 StatusResponse)
+
++ Response 404 (application/json)
+    + Attributes (404 RequestIdResponse)
 
 
 # Group e-Invoicing
@@ -1300,7 +1342,7 @@ A multipurpose object used by several endpoints
 
 ## DocManDocDetails (object)
 + DocumentId: 12345 (number) 
-+ DocumentPath: `20180113_ADIL01_WHS.RTF` (string)
++ DocumentName: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
 + LockedBy: Application AA (string)
 + DocumentType: TRADEDOCS (string)
@@ -1344,7 +1386,7 @@ A multipurpose object used by several endpoints
 
 ## DocManDocDetailsList (object)
 + DocumentId: 12345 (number) 
-+ DocumentPath: `20180113_ADIL01_WHS.RTF` (string)
++ DocumentName: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
 + LockedBy: Application AA (string)
 + DocumentType: TRADEDOCS (string)
@@ -1367,7 +1409,7 @@ A multipurpose object used by several endpoints
 + CounterpartyCode: `NEWACC30.P` (string)
 + ContractId: `P00001.000` (string)
 + DocumentReference: PI1574747 (string)
-+ WIPAccount: `0001.000` (string)
++ WIPAccountCode: `0001.000` (string)
 + CommodityCode: ORG (string)
 + CommodityOrigin: WHITE (string)
 + CommodityGrade: FAIRTR (string)
@@ -1385,6 +1427,19 @@ A multipurpose object used by several endpoints
 + Verified: true (boolean)
 + VerifiedDate: `2017-12-09T00:00:00Z` (string)
 + VerifiedByCode: JS (string) 
+
+## IndexDocument (object)
++ DocumentName: `20180113_ADIL01_WHS.RTF` (string)
++ TradingEntityId: JT (string)
++ DocumentType: TRADEDOCS (string)
++ CounterpartyCode: `NEWACC30.P` (string)
++ ContractId: `P00001.000` (string)
++ DocumentReference: PI1574747 (string)
++ WIPAccountCode: `0001.000` (string)
++ CommodityCode: ORG (string)
+
+## IndexId (object)
++ IndexId: 100 (number)
 
 ## InnerBodyTemp (object)
 + TradingEntityId: JT (string)
