@@ -15,10 +15,10 @@ Model Header containing AccessToken
 
 # Group DocMan
 
-## List Document Details [/DocMan/DocumentDetails/{Property}/{PropertyValue}]
+## Document Details List [/DocMan/DocumentDetails/{Property}/{PropertyValue}]
 `GET` List of Document Details
 
-### Document Details List [GET]
+### List Document Details [GET]
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
@@ -79,7 +79,7 @@ Model Header containing AccessToken
             + ContractId (optional, string)
             + DocumentReference (optional, string)
             + WIPAccountCode (optional, string)
-    + PropertyValue (optional, number, 12345)
+    + PropertyValue (optional, number, `12345`)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
