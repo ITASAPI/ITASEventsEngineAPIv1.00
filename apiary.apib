@@ -173,6 +173,7 @@ Model Header containing AccessToken
 <b>Request Body</b>
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
+|<b>Model</b>||||||
 |DocumentName|Document Name|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
 |DocumentType|Document Type|`string`|30|||
@@ -181,6 +182,8 @@ Model Header containing AccessToken
 |DocumentReference|Document Reference|`string`|9|||
 |WIPAccountCode|WIP Account Code|`string`|11|||
 |CommodityCode|Pricipal Commodity Code|`string`|3|||
+|<b>End</b>||||||
+|TradingEntityId|Trading Entity ID|`string`|2|||
 
 <b>Response Data</b>
 |Property|Description|Type|Max Length|Notes|Constraint|
@@ -1429,6 +1432,10 @@ A multipurpose object used by several endpoints
 + VerifiedByCode: JS (string) 
 
 ## IndexDocument (object)
++ Model (Model)
++ TradingEntityId: JT (string)
+
+## Model (object)
 + DocumentName: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
 + DocumentType: TRADEDOCS (string)
@@ -1652,7 +1659,7 @@ A multipurpose object used by several endpoints
 ## UserAccount (object)
 + UserAccountId: JS (string)
 + UserAccountName: JSMITH (string)
-+ USerAccountDescription: John Smith (string) 
++ UserAccountDescription: John Smith (string) 
 
 ## ValuesInContractCcy (object)
 + CurrencyCode: USD (string)
