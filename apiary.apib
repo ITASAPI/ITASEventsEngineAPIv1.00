@@ -26,7 +26,7 @@ Model Header containing AccessToken
 |DocumentPath|Document Path|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
 |LockedBy|Locked By|`string`|255|||
-|FolderAlias|Folder Alias|`string`|30|||
+|DocumentType|Document Type|`string`|30|||
 |CreatedByCode|Created By Code|`string`|3|||
 |CreatedDate|Created Date|`datetime`||||
 |CreatedTime|Created Time|`string`|5|||
@@ -75,6 +75,7 @@ Model Header containing AccessToken
        + Members
             + DocumentId (optional, number) 
             + TradingEntityId (optional, string)
+            + DocumentType (optional, string) 
             + CounterpartyCode (optional, string)
             + ContractId (optional, string)
             + DocumentReference (optional, string)
@@ -104,7 +105,7 @@ Model Header containing AccessToken
 |DocumentPath|Document Path|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
 |LockedBy|Locked By|`string`|255|||
-|FolderAlias|Folder Alias|`string`|30|||
+|DocumentType|Document Type|`string`|30|||
 |CreatedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
 |CreatedDate|Created Date|`datetime`||||
 |CreatedTime|Created Time|`string`|5|||
@@ -1302,7 +1303,7 @@ A multipurpose object used by several endpoints
 + DocumentPath: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
 + LockedBy: Application AA (string)
-+ FolderAlias: DOCUMENTS (string)
++ DocumentType: TRADEDOCS (string)
 + CreatedBy (UserAccount)
 + CreatedDate: `2017-12-01T00:00:00Z` (string)
 + CreatedTime: `15:30` (string)
@@ -1346,7 +1347,7 @@ A multipurpose object used by several endpoints
 + DocumentPath: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
 + LockedBy: Application AA (string)
-+ FolderAlias: DOCUMENTS (string)
++ DocumentType: TRADEDOCS (string)
 + CreatedByCode: JS (string) 
 + CreatedDate: `2017-12-01T00:00:00Z` (string)
 + CreatedTime: `15:30` (string)
