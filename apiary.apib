@@ -13,6 +13,80 @@ Model Header containing AccessToken
 
 
 
+# Group DocMan
+
+## Document Details [/DocMan/DocumentDetails/{TradingEntityId}/{DocumentId}/]
+`GET` Document Details
+
+### Read Document Details [GET]
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|DocumentId|Document ID|`number`||||
+|DocumentPath|Document Path|`string`|200|||
+|TradingEntityId|Trading Entity ID|`string`|2|||
+|LockedBy|Locked By|`string`|255|||
+|FolderAlias|Folder Alias|`string`|30|||
+|CreatedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|CreatedDate|Created Date|`datetime`||||
+|CreatedTime|Created Time|`string`|5|||
+|LastModifiedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|LastModifiedTime|Last Modified Time|`string`|5|||
+|LastModifiedDate|LastModified Date|`datetime`||||
+|LastModifiedOrigin|Last Modified Origin|`string`|3|||
+|LastIndexedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|LastIndexedTime|Last Indexed Time|`string`|5|||
+|LastIndexedDate|Last Indexed Date|`datetime`||||
+|LastIndexedSetDate|Last Indexed Set Date|`datetime`||||
+|LastIndexedModifiedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|LastIndexedModifiedTime|Last Indexed Modified Time|`string`|5|||
+|Version|Version|`number`||||
+|CreatedOrigin|Created Origin|`string`|9|||
+|Deleted|Deleted|`boolean`||||
+|Counterparty|see <b><a href="">Account Header</a></b> object|`object`||||
+|ContractId|Contract Id|`string`|10|||
+|DocumentReference|Document Reference|`string`|9|||
+|WIPAccount|see <b><a href="">WIP Account</a></b> object|`object`||||
+|CommodityCode|Principal Commodity Code|`string`|3|||
+|CommodityOrigin|Commodity Origin|`string`|6|||
+|CommodityGrade|Commodity Grade|`string`|6|||
+|Container|Container|`string`|250|||
+|VesselName|Vessel Name|`string`|30|||
+|Memo|Memorandum|`string`|8000|||
+|ShortDescription|Short Description|`string`|40|||
+|TemplateFolder|Template Folder|`string`|40|||
+|TemplateName|Template Name|`string`|255|||
+|GroupNumber|Group Number|`string`|6|||
+|EmailForward|Email Forward|`string`|255|||
+|EmailSubject|Email Subject|`string`|255|||
+|Protected|Protected|`boolean`||||
+|DocumentDate|Document Date|`datetime`||||
+|Verified|Verified|`boolean`|2|||
+|VerifiedDate|Verified Date|`datetime`||||
+|VerifiedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+
++ Request (application/json)
+    + Header
+
+            AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
+
++ Parameters
+    + TradingEntityId (required, string, `JT`) ... Identify specific trading entity id.
+    + DocumentId (required, number, `12345`) ... Identify specific document id.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes 
+        + Data (DocManDocDetails)
+        + Response (200 SuccessResponse)
+
++ Response 400 (application/json)
+    + Attributes (400 BadReadResponse)
+
++ Response 404 (application/json)
+    + Attributes (404 RequestIdResponse)
+
+
+
 # Group e-Invoicing
 
 ## Temporary Process Initiation [/Invoicing/TempProcessInitiation]
@@ -125,6 +199,8 @@ Model Header containing AccessToken
         + Data (array [OutstandingInvoices List])
         + Pagination (Pagination)
         + Response (200 SuccessResponse)
+
+
 
 
 ## Outstanding Invoice [/Accounting/Invoicing/Invoice/{RequestId}]
@@ -833,6 +909,48 @@ Web services to support creating, reading and updating ITAS Codes
 # Group Data Object Definitions
 List of re-usable Data Objects referenced as `object` types. Note that these endpoints are not accessable and only here for reference purposes.
 
+
+## AccountHeader [/AccountHeader]
+A multipurpose object used by several endpoints and with multiple source tables depending on context. The object described below is generic. 
+
+### AccountHeader [GET]
+The account header object is derived from multiple locations of the database depending on the the value of AccountType. All are documented below.
+<br /><br />
+<strong>AccountType: C</strong>
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|AccountType|A Single Letter Denoting Account Type|`string`|1||`C`|
+|AccountId|Account ID|`string`|11|||
+|AccountDescription|Account Description|`string`|200|||
+|EDICode|Account EDI Code|`string`|50|||
+|Status|Account Status|`string`|1||`O` or `F`|
+
+<br />
+<strong>AccountType: N</strong>
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|AccountType|A Single Letter Denoting Account Type|`string`|1||`N`|
+|AccountId|Account ID|`string`|11|||
+|AccountDescription|Account Description|`string`|200|||
+|EDICode|Account EDI Code|`string`|50|||
+|Status|Account Status|`string`|1||`O` or `F`|
+
+<br />
+<strong>AccountType: K</strong>
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|AccountType|A Single Letter Denoting Account Type|`string`|1||`K`|
+|AccountId|Account ID|`string`|11|||
+|AccountDescription|Account Description|`string`|200|||
+|EDICode|Account EDI Code|`string`|50|||
+|Status|Account Status|`string`|1||`O` or `F`|
+
++ Response 200 (application/json; charset=utf-8)
++ Attributes (AccountHeader)
+
 ## Contract Currency [/ContractCurrency]
 A multipurpose object used by several endpoints
 ### ContractCurrency [GET]
@@ -850,6 +968,7 @@ A multipurpose object used by several endpoints
 
 + Response 200 (application/json; charset=utf-8)
 + Attributes (ValuesInContractCcy)
+
 
 ## Functional Currency [/FunctionalCurrency]
 A multipurpose object used by several endpoints
@@ -886,6 +1005,33 @@ A multipurpose object used by several endpoints
 
 + Response 200 (application/json; charset=utf-8)
 + Attributes (ValuesInPnLCcy)
+
+## User Account [/UserAccount]
+A multipurpose object used by several endpoints
+### User Account [GET]
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|UserAccountId|User Account ID|`string`|3||Required|
+|UserAccountName|User Account Name|`string`|255|||
+|UserAccountDescription|User Account Description|`string`|40|||
+
++ Response 200 (application/json; charset=utf-8)
++ Attributes (UserAccount)
+
+## WIP Account [/WipAccount]
+A multipurpose object used by several endpoints
+### WIP Account [GET]
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|WIPAccountId|WIP Account ID|`string`|11||Required|
+|WIPAccountDescription|WIP Account Description|`string`|60|||
+|WIPAccountType|WIP Account Type|`string`|1|||
+|Status|Status|`string`|1||`O` or `F`|
+
++ Response 200 (application/json; charset=utf-8)
++ Attributes (WIPAccount)
 
 # Data Structures
 
@@ -1015,6 +1161,34 @@ A multipurpose object used by several endpoints
 ## UserAdminBool
 + IsUserAdmin: true (boolean)
 
+## AccountHeader (object)
++ AccountType: C (string)
++ AccountId: 00040444.P (string)
++ AccountDescription: Nigeria Trading Dept (string)
++ EDICode: ABC1234 (string)
++ Status: F (string)
+
+## AccountHeaderC (object)
++ AccountType: C (string)
++ AccountId: 00040444.P (string)
++ AccountDescription: Nigeria Trading Dept (string)
++ EDICode: ABC1234 (string)
++ Status: F (string)
+
+## AccountHeaderN (object)
++ AccountType: N (string)
++ AccountId: 0510.1000 (string)
++ AccountDescription: Computer Equipment | Cost (string)
++ EDICode: 1234 (string)
++ Status: O (string)
+
+## AccountHeaderK (object)
++ AccountType: K    (string)
++ AccountId: 5100.MEP (string)
++ AccountDescription: Bauche Account Provisions (string)
++ EDICode: 1234 (string)
++ Status: O (string)
+
 ## CommodityValueList (object)
 + CommodityFullCode: CHE||CASO||47||QWE||RTY (string)
 + PnLCurrency (array [ValuesInPnLCcy])
@@ -1044,6 +1218,51 @@ A multipurpose object used by several endpoints
 + PnLCurrency (array [ValuesInPnLCcy])
 + ContractCurrency (array [ValuesInContractCcy])
 + FunctionalCurrency (array [ValuesInFunctionalCcy])
+
+## DocManDocDetails (object)
++ DocumentId: 12345 (number) 
++ DocumentPath: `20180113_ADIL01_WHS.RTF` (string)
++ TradingEntityId: JT (string)
++ LockedBy: Application AA (string)
++ FolderAlias: DOCUMENTS (string)
++ CreatedBy (UserAccount)
++ CreatedDate: `2017-12-01T00:00:00Z` (string)
++ CreatedTime: `15:30` (string)
++ LastModifiedBy (UserAccount)
++ LastModifiedTime: `17:30` (string)
++ LastModifiedDate: `2017-12-10T00:00:00Z` (string)
++ LastModifiedOrigin: J21 (string)
++ LastIndexedBy (UserAccount)
++ LastIndexedTime:  `17:31` (string)
++ LastIndexedDate: `2017-12-10T00:00:00Z` (string)
++ LastIndexedSetDate: `2017-12-10T00:00:00Z` (string)
++ LastIndexedModifiedBy (UserAccount)
++ LastIndexedModifiedTime: `17:31`
++ Version: 2 (number)
++ CreatedOrigin: TRADE (string)
++ Deleted: false (boolean)
++ Counterparty: (Counterparty)
++ ContractId: `P00001.000` (string)
++ DocumentReference: PI1574747 (string)
++ WIPAccount: `0001.000` (string)
++ CommodityCode: ORG (string)
++ CommodityOrigin: WHITE (string)
++ CommodityGrade: FAIRTR (string)
++ Container: Unit2 (string)
++ VesselName: Barge 1 (string)
++ Memo: Example Memo (string)
++ ShortDescription: Example Short desc
++ TemplateFolder: Folder 1 (string)
++ TemplateName: Documents Folder 1 (string)
++ GroupNumber: 12 (number)
++ EmailForward: `jsmith@example.com` (string)
++ EmailSubject: Documents in folder (string)
++ Protected: true (boolean)
++ DocumentDate: `2017-12-10T00:00:00Z` (string)
++ Verified: true (boolean)
++ VerifiedDate: `2017-12-09T00:00:00Z` (string)
++ VerifiedBy: (UserAccount)
+
 
 ## InnerBodyTemp (object)
 + TradingEntityId: JT (string)
@@ -1253,6 +1472,11 @@ A multipurpose object used by several endpoints
 + ContractCurrency (array [ValuesInContractCcy])
 + FunctionalCurrency (array [ValuesInFunctionalCcy])
 
+## UserAccount (object)
++ UserAccountId: JS (string)
++ UserAccountName: JSMITH (string)
++ USerAccountDescription: John Smith (string) 
+
 ## ValuesInContractCcy (object)
 + CurrencyCode: USD (string)
 + ConValContract: 4050 (number)
@@ -1282,3 +1506,9 @@ A multipurpose object used by several endpoints
 + FOPnL: 2500 (number)
 + FXPnL: 2900 (number)
 + MktValPnL: 3600 (number)
+
+## WIPAccount (object)
++ WIPAccountId: 1111.MEP (required, string)
++ WIPAccountDescription: `MEPACCRUE - East Africa Dept` (string)
++ WIPAccountType: M (string)
++ Status: F (string)
