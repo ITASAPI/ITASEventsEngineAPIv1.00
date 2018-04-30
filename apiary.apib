@@ -15,10 +15,10 @@ Model Header containing AccessToken
 
 # Group DocMan
 
-## Document Details [/DocMan/DocumentDetails/{TradingEntityId}/{DocumentId}/]
-`GET` Document Details
+## List Document Details [/DocMan/DocumentDetails/{Property}/{PropertyValue}]
+`GET` List of Document Details
 
-### Read Document Details [GET]
+### Document Details List [GET]
 
 |Property|Description|Type|Max Length|Notes|Constraint|
 |--------|-----------|----|----------|-----|----------|
@@ -27,26 +27,26 @@ Model Header containing AccessToken
 |TradingEntityId|Trading Entity ID|`string`|2|||
 |LockedBy|Locked By|`string`|255|||
 |FolderAlias|Folder Alias|`string`|30|||
-|CreatedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|CreatedByCode|Created By Code|`string`|3|||
 |CreatedDate|Created Date|`datetime`||||
 |CreatedTime|Created Time|`string`|5|||
-|LastModifiedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|LastModifiedByCode|Last Modified By Code|`string`|3|||
 |LastModifiedTime|Last Modified Time|`string`|5|||
 |LastModifiedDate|LastModified Date|`datetime`||||
 |LastModifiedOrigin|Last Modified Origin|`string`|3|||
-|LastIndexedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|LastIndexedByCode|Last Indexed By Code|`string`|3|||
 |LastIndexedTime|Last Indexed Time|`string`|5|||
 |LastIndexedDate|Last Indexed Date|`datetime`||||
 |LastIndexedSetDate|Last Indexed Set Date|`datetime`||||
-|LastIndexedModifiedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|LastIndexedModifiedByCode|Last Indexed Modified By Code|`string`|3|||
 |LastIndexedModifiedTime|Last Indexed Modified Time|`string`|5|||
 |Version|Version|`number`||||
 |CreatedOrigin|Created Origin|`string`|9|||
 |Deleted|Deleted|`boolean`||||
-|Counterparty|see <b><a href="">Account Header</a></b> object|`object`||||
+|CounterpartyCode|Counterparty Code|`string`|10|||
 |ContractId|Contract Id|`string`|10|||
 |DocumentReference|Document Reference|`string`|9|||
-|WIPAccount|see <b><a href="">WIP Account</a></b> object|`object`||||
+|WIPAccountCode|WIP Account Code|`string`|11|||
 |CommodityCode|Principal Commodity Code|`string`|3|||
 |CommodityOrigin|Commodity Origin|`string`|6|||
 |CommodityGrade|Commodity Grade|`string`|6|||
@@ -63,7 +63,85 @@ Model Header containing AccessToken
 |DocumentDate|Document Date|`datetime`||||
 |Verified|Verified|`boolean`|2|||
 |VerifiedDate|Verified Date|`datetime`||||
-|VerifiedBy|see <b><a href="">UserAccount</a></b> object|`object`||||
+|VerifiedByCode|Verified By Code|`string`|3|||
+
++ Request (application/json)
+    + Header
+
+            AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
+
++ Parameters
+    + Property (optional, enum[string]) ... identify property name to filter by 
+       + Members
+            + DocumentId (optional, number) 
+            + TradingEntityId (optional, string)
+            + CounterpartyCode (optional, string)
+            + ContractId (optional, string)
+            + DocumentReference (optional, string)
+            + WIPAccountCode (optional, string)
+    + PropertyValue (optional, number, 12345)
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes 
+        + Data (array[DocManDocDetailsList])
+        + Pagination (Pagination)
+        + Response (200 SuccessResponse)
+    
++ Response 400 (application/json; charset=utf-8)
+    + Attributes (400 BadPropertyResponse)
+    
++ Response 404 (application/json; charset=utf-8)
+    + Attributes (404 Response)
+
+## Document Details [/DocMan/DocumentDetails/{TradingEntityId}/{DocumentId}/]
+`GET` Document Details
+
+### Read Document Details [GET]
+
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|DocumentId|Document ID|`number`||||
+|DocumentPath|Document Path|`string`|200|||
+|TradingEntityId|Trading Entity ID|`string`|2|||
+|LockedBy|Locked By|`string`|255|||
+|FolderAlias|Folder Alias|`string`|30|||
+|CreatedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
+|CreatedDate|Created Date|`datetime`||||
+|CreatedTime|Created Time|`string`|5|||
+|LastModifiedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
+|LastModifiedTime|Last Modified Time|`string`|5|||
+|LastModifiedDate|LastModified Date|`datetime`||||
+|LastModifiedOrigin|Last Modified Origin|`string`|3|||
+|LastIndexedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
+|LastIndexedTime|Last Indexed Time|`string`|5|||
+|LastIndexedDate|Last Indexed Date|`datetime`||||
+|LastIndexedSetDate|Last Indexed Set Date|`datetime`||||
+|LastIndexedModifiedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
+|LastIndexedModifiedTime|Last Indexed Modified Time|`string`|5|||
+|Version|Version|`number`||||
+|CreatedOrigin|Created Origin|`string`|9|||
+|Deleted|Deleted|`boolean`||||
+|Counterparty|see <b><a href="/#reference/data-object-definitions/accountheader">Account Header</a></b> object|`object`||||
+|ContractId|Contract Id|`string`|10|||
+|DocumentReference|Document Reference|`string`|9|||
+|WIPAccount|see <b><a href="/#reference/data-object-definitions/wip-account">WIP Account</a></b> object|`object`||||
+|CommodityCode|Principal Commodity Code|`string`|3|||
+|CommodityOrigin|Commodity Origin|`string`|6|||
+|CommodityGrade|Commodity Grade|`string`|6|||
+|Container|Container|`string`|250|||
+|VesselName|Vessel Name|`string`|30|||
+|Memo|Memorandum|`string`|8000|||
+|ShortDescription|Short Description|`string`|40|||
+|TemplateFolder|Template Folder|`string`|40|||
+|TemplateName|Template Name|`string`|255|||
+|GroupNumber|Group Number|`string`|6|||
+|EmailForward|Email Forward|`string`|255|||
+|EmailSubject|Email Subject|`string`|255|||
+|Protected|Protected|`boolean`||||
+|DocumentDate|Document Date|`datetime`||||
+|Verified|Verified|`boolean`|2|||
+|VerifiedDate|Verified Date|`datetime`||||
+|VerifiedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
 
 + Request (application/json)
     + Header
@@ -1244,7 +1322,7 @@ A multipurpose object used by several endpoints
 + Counterparty: (AccountHeader)
 + ContractId: `P00001.000` (string)
 + DocumentReference: PI1574747 (string)
-+ WIPAccount: `0001.000` (string)
++ WIPAccount (WIPAccount)
 + CommodityCode: ORG (string)
 + CommodityOrigin: WHITE (string)
 + CommodityGrade: FAIRTR (string)
@@ -1263,6 +1341,49 @@ A multipurpose object used by several endpoints
 + VerifiedDate: `2017-12-09T00:00:00Z` (string)
 + VerifiedBy: (UserAccount)
 
+## DocManDocDetailsList (object)
++ DocumentId: 12345 (number) 
++ DocumentPath: `20180113_ADIL01_WHS.RTF` (string)
++ TradingEntityId: JT (string)
++ LockedBy: Application AA (string)
++ FolderAlias: DOCUMENTS (string)
++ CreatedByCode: JS (string) 
++ CreatedDate: `2017-12-01T00:00:00Z` (string)
++ CreatedTime: `15:30` (string)
++ LastModifiedByCode: JS (string) 
++ LastModifiedTime: `17:30` (string)
++ LastModifiedDate: `2017-12-10T00:00:00Z` (string)
++ LastModifiedOrigin: J21 (string)
++ LastIndexedByCode: JS (string) 
++ LastIndexedTime:  `17:31` (string)
++ LastIndexedDate: `2017-12-10T00:00:00Z` (string)
++ LastIndexedSetDate: `2017-12-10T00:00:00Z` (string)
++ LastIndexedModifiedByCode: JS (string) 
++ LastIndexedModifiedTime: `17:31` (string)
++ Version: 2 (number)
++ CreatedOrigin: TRADE (string)
++ Deleted: false (boolean)
++ CounterpartyCode: `NEWACC30.P` (string)
++ ContractId: `P00001.000` (string)
++ DocumentReference: PI1574747 (string)
++ WIPAccount: `0001.000` (string)
++ CommodityCode: ORG (string)
++ CommodityOrigin: WHITE (string)
++ CommodityGrade: FAIRTR (string)
++ Container: Unit2 (string)
++ VesselName: Barge 1 (string)
++ Memo: Example Memo (string)
++ ShortDescription: Example Short descr (string)
++ TemplateFolder: Folder 1 (string)
++ TemplateName: Documents Folder 1 (string)
++ GroupNumber: 12 (number)
++ EmailForward: `jsmith@example.com` (string)
++ EmailSubject: Documents in folder (string)
++ Protected: true (boolean)
++ DocumentDate: `2017-12-10T00:00:00Z` (string)
++ Verified: true (boolean)
++ VerifiedDate: `2017-12-09T00:00:00Z` (string)
++ VerifiedByCode: JS (string) 
 
 ## InnerBodyTemp (object)
 + TradingEntityId: JT (string)
