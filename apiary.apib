@@ -165,7 +165,8 @@ Model Header containing AccessToken
     + Attributes (404 RequestIdResponse)
 
 
-## Index Document [/DocMan/IndexDocument]
+
+## Document Indexing [/DocMan/IndexDocument]
 `POST` Index Document
 
 ### Index Document [POST]
@@ -209,6 +210,52 @@ Model Header containing AccessToken
 
 + Response 404 (application/json)
     + Attributes (404 RequestIdResponse)
+
+## Document Upload [/DocMan/UploadDocument]
+`POST` Upload Document
+
+### Upload Document [POST]
+
+<b>Content-Type: multipart/form-data</b>
+|Type|Value|||||
+|--------|-----------|----|----------|-----|----------|
+|File|Attach File|||||
+|Text|Model|||||
+
+<b>Model Body</b>
+|Property|Description|Type|Max Length|Notes|Constraint|
+|--------|-----------|----|----------|-----|----------|
+|DocumentType|Document Type|`string`|30|||
+|CounterpartyCode|Counterparty Code|`string`|10|||
+|DocumentReference|Document Reference|`string`|9|||
+|ContractId|Contract ID|`string`|10|||
+|TradingEntityId|Trading Entity ID|`string`|2|||
+|WIPAccountCode|WIP Account Code|`string`|11|||
+|VesselName|Vessel Name|`string`|30|||
+|GroupNumber|Group Number|`string`|6|||
+|CommodityCode|Pricipal Commodity Code|`string`|3|||
+
++ Request (form-data)
+    + Header
+
+            AccessToken: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
+
+
+    + Attributes (UploadDocument)
+
+
++ Response 201 (application/json; charset=utf-8)
+    + Attributes 
+        + Data (DocumentId)
+        + Response (201 CreateResponse)
+
++ Response 400 (application/json)
+    + Attributes (400 StatusResponse)
+
++ Response 404 (application/json)
+    + Attributes (404 RequestIdResponse)
+
+
 
 
 # Group e-Invoicing
@@ -1431,6 +1478,9 @@ A multipurpose object used by several endpoints
 + VerifiedDate: `2017-12-09T00:00:00Z` (string)
 + VerifiedByCode: JS (string) 
 
+## DocumentId (object)
++ DocumentId: 12345 (number)
+
 ## IndexDocument (object)
 + Model (Model)
 + TradingEntityId: JT (string)
@@ -1516,6 +1566,17 @@ A multipurpose object used by several endpoints
 + groupName: groupC (string)
 + groupID: 3 (number)
 + groupUrl: /kvpstore/groupC (string)
+
+## Model (object)
++ DocumentType: TRADEDOCS (string)
++ CounterpartyCode: `NEWACC30.P` (string)
++ DocumentReference: PI1574747 (string)
++ ContractId: `P00001.000` (string)
++ TradingEntityId: JT (string)
++ VesselName: Barge 1 (string)
++ GroupNumber: 12 (number)
++ CommodityCode: ORG (string)
+
 
 ## OutstandingInvoices List (object)
 + RequestId: abc123 (string)
@@ -1655,6 +1716,10 @@ A multipurpose object used by several endpoints
 + PnLCurrency (array [ValuesInPnLCcy])
 + ContractCurrency (array [ValuesInContractCcy])
 + FunctionalCurrency (array [ValuesInFunctionalCcy])
+
+## UploadDocument (object)
++ File: `example.attch` (fixed)
++ Model (Model)
 
 ## UserAccount (object)
 + UserAccountId: JS (string)
