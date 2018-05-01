@@ -25,6 +25,7 @@ Model Header containing AccessToken
 |DocumentId|Document ID|`number`||||
 |DocumentName|Document Name|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
+|PhysicalPath|Physical Path|`string`|200|||
 |LockedBy|Locked By|`string`|255|||
 |DocumentType|Document Type|`string`|30|||
 |CreatedByCode|Created By Code|`string`|3|||
@@ -104,6 +105,7 @@ Model Header containing AccessToken
 |DocumentId|Document ID|`number`||||
 |DocumentName|Document Name|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
+|PhysicalPath|Physical Path|`string`|200|||
 |LockedBy|Locked By|`string`|255|||
 |DocumentType|Document Type|`string`|30|||
 |CreatedBy|see <b><a href="/#reference/data-object-definitions/user-account">UserAccount</a></b> object|`object`||||
@@ -183,6 +185,7 @@ Model Header containing AccessToken
 |DocumentReference|Document Reference|`string`|9|||
 |WIPAccountCode|WIP Account Code|`string`|11|||
 |CommodityCode|Pricipal Commodity Code|`string`|3|||
+|PhysicalPath|Physical Path|`string`|200|||
 |<b>End</b>||||||
 |TradingEntityId|Trading Entity ID|`string`|2|||
 
@@ -1394,6 +1397,7 @@ A multipurpose object used by several endpoints
 + DocumentId: 12345 (number) 
 + DocumentName: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
++ PhysicalPath: `\\\\hivedome-fs01\\itas\\Comp\\DroppedFiles\\JT\\TRADEDOCS\\ITAS_NG.20180220.log` (string)
 + LockedBy: Application AA (string)
 + DocumentType: TRADEDOCS (string)
 + CreatedBy (UserAccount)
@@ -1438,6 +1442,7 @@ A multipurpose object used by several endpoints
 + DocumentId: 12345 (number) 
 + DocumentName: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
++ PhysicalPath: `\\\\hivedome-fs01\\itas\\Comp\\DroppedFiles\\JT\\TRADEDOCS\\ITAS_NG.20180220.log` (string)
 + LockedBy: Application AA (string)
 + DocumentType: TRADEDOCS (string)
 + CreatedByCode: JS (string) 
@@ -1565,7 +1570,7 @@ A multipurpose object used by several endpoints
 + ContractId: `P00001.000` (string)
 + DocumentReference: PI1574747 (string)
 + WIPAccountCode: `0001.000` (string)
-+ CommodityCode: ORG (string)
++ PhysicalPath: `\\\\hivedome-fs01\\itas\\Comp\\DroppedFiles\\JT\\TRADEDOCS\\ITAS_NG.20180220.log` (string)
 
 ## ModelUpload (object)
 + DocumentType: TRADEDOCS (string)
