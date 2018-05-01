@@ -1485,16 +1485,6 @@ A multipurpose object used by several endpoints
 + Model (Model)
 + TradingEntityId: JT (string)
 
-## Model (object)
-+ DocumentName: `20180113_ADIL01_WHS.RTF` (string)
-+ TradingEntityId: JT (string)
-+ DocumentType: TRADEDOCS (string)
-+ CounterpartyCode: `NEWACC30.P` (string)
-+ ContractId: `P00001.000` (string)
-+ DocumentReference: PI1574747 (string)
-+ WIPAccountCode: `0001.000` (string)
-+ CommodityCode: ORG (string)
-
 ## IndexId (object)
 + IndexId: 100 (number)
 
@@ -1568,6 +1558,16 @@ A multipurpose object used by several endpoints
 + groupUrl: /kvpstore/groupC (string)
 
 ## Model (object)
++ DocumentName: `20180113_ADIL01_WHS.RTF` (string)
++ TradingEntityId: JT (string)
++ DocumentType: TRADEDOCS (string)
++ CounterpartyCode: `NEWACC30.P` (string)
++ ContractId: `P00001.000` (string)
++ DocumentReference: PI1574747 (string)
++ WIPAccountCode: `0001.000` (string)
++ CommodityCode: ORG (string)
+
+## ModelUpLoad (object)
 + DocumentType: TRADEDOCS (string)
 + CounterpartyCode: `NEWACC30.P` (string)
 + DocumentReference: PI1574747 (string)
@@ -1719,7 +1719,7 @@ A multipurpose object used by several endpoints
 
 ## UploadDocument (object)
 + File: `example.attch` (fixed)
-+ Model (Model)
++ Model (ModelUpload)
 
 ## UserAccount (object)
 + UserAccountId: JS (string)
