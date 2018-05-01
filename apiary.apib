@@ -234,7 +234,31 @@ Model Header containing AccessToken
             AccessToken: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
 
 
-    + Attributes (UploadDocument)
+    + Body
+    	Content-Type: multipart/form-data; boundary=----WebKitFormBoundarygUQ89v7GZKo5U9lP
+
+		------WebKitFormBoundarygUQ89v7GZKo5U9lP
+		
+		Content-Disposition: form-data; name="0"; filename="git-process.txt"
+
+		Content-Type: text/plain
+		[file content goes here (might need to change the content-type if it's binary)]
+		
+		------WebKitFormBoundarygUQ89v7GZKo5U9lP
+		
+		Content-Disposition: form-data; name="model"
+		{
+    		"DocumentType":"CashDocs",
+    		"CounterPartyId":null,
+    		"DocumentRef":"CP1500021",
+    		"ContractId":null,
+    		"TradingEntityId":"JT",
+    		"WipAccountId":null,
+    		"VesselId":null,
+    		"GroupNumber":null,
+    		"CommodityId":null
+		}
+
 
 
 + Response 201 (application/json; charset=utf-8)
@@ -1553,16 +1577,6 @@ A multipurpose object used by several endpoints
 + WIPAccountCode: `0001.000` (string)
 + PhysicalPath: `\\\\hivedome-fs01\\itas\\Comp\\DroppedFiles\\JT\\TRADEDOCS\\ITAS_NG.20180220.log` (string)
 
-## ModelUpload (object)
-+ DocumentType: TRADEDOCS (string)
-+ CounterpartyCode: `NEWACC30.P` (string)
-+ DocumentReference: PI1574747 (string)
-+ ContractId: `P00001.000` (string)
-+ TradingEntityId: JT (string)
-+ VesselName: Barge 1 (string)
-+ GroupNumber: 12 (number)
-+ CommodityCode: ORG (string)
-
 
 ## OutstandingInvoices List (object)
 + RequestId: abc123 (string)
@@ -1703,9 +1717,6 @@ A multipurpose object used by several endpoints
 + ContractCurrency (array [ValuesInContractCcy])
 + FunctionalCurrency (array [ValuesInFunctionalCcy])
 
-## UploadDocument (object)
-+ File: `example.attch` (fixed)
-+ Model (ModelUpload)
 
 ## UserAccount (object)
 + UserAccountId: JS (string)
