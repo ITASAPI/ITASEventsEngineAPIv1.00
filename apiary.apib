@@ -15,7 +15,7 @@ Model Header containing AccessToken
 
 # Group DocMan
 
-## Document Details List [/DocMan/DocumentDetails/{Property}/{PropertyValue}]
+## Document Details List [/DocMan/{TradingEntityId}/DocumentDetails/{DocType}/{Property}/{PropertyValue}]
 `GET` List of Document Details
 
 ### List Document Details [GET]
@@ -25,42 +25,15 @@ Model Header containing AccessToken
 |DocumentId|Document ID|`number`||||
 |DocumentName|Document Name|`string`|200|||
 |TradingEntityId|Trading Entity ID|`string`|2|||
-|LockedBy|Locked By|`string`|255|||
-|DocumentType|Document Type|`string`|30|||
-|CreatedByCode|Created By Code|`string`|3|||
-|CreatedDateTime|Created Date|`datetime`||||
-|LastModifiedByCode|Last Modified By Code|`string`|3|||
-|LastModifiedDateTime|LastModified Date|`datetime`||||
-|LastModifiedOrigin|Last Modified Origin|`string`|3|||
-|LastIndexedByCode|Last Indexed By Code|`string`|3|||
-|LastIndexedDateTime|Last Indexed Date|`datetime`||||
-|LastIndexedSetDate|Last Indexed Set Date|`datetime`||||
-|LastIndexedModifiedByCode|Last Indexed Modified By Code|`string`|3|||
-|LastIndexedModifiedTime|Last Indexed Modified Time|`string`|5|||
-|Version|Version|`number`||||
+|DocType|Doc Type|`string`|30|||
 |CreatedOrigin|Created Origin|`string`|9|||
-|Deleted|Deleted|`boolean`||||
 |CounterpartyCode|Counterparty Code|`string`|10|||
 |ContractId|Contract Id|`string`|10|||
 |DocumentReference|Document Reference|`string`|9|||
 |WIPAccountCode|WIP Account Code|`string`|11|||
 |CommodityCode|Principal Commodity Code|`string`|3|||
-|CommodityOrigin|Commodity Origin|`string`|6|||
-|CommodityGrade|Commodity Grade|`string`|6|||
-|Container|Container|`string`|250|||
-|VesselName|Vessel Name|`string`|30|||
-|Memo|Memorandum|`string`|8000|||
-|ShortDescription|Short Description|`string`|40|||
-|TemplateFolder|Template Folder|`string`|40|||
-|TemplateName|Template Name|`string`|255|||
-|GroupNumber|Group Number|`string`|6|||
-|EmailForward|Email Forward|`string`|255|||
-|EmailSubject|Email Subject|`string`|255|||
-|Protected|Protected|`boolean`||||
 |DocumentDate|Document Date|`datetime`||||
 |Verified|Verified|`boolean`||||
-|VerifiedDate|Verified Date|`datetime`||||
-|VerifiedByCode|Verified By Code|`string`|3|||
 
 + Request (application/json)
     + Header
@@ -68,16 +41,18 @@ Model Header containing AccessToken
             AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
 
 + Parameters
+    + TradingEntityId (optional, string, `JT`) ... identify specific trading entity id
+    + DocType (optional, string, `TRADEDOCS` ) ... identify specific doctype
     + Property (optional, enum[string]) ... identify property name to filter by 
        + Members
-            + DocumentId (optional, number) 
-            + TradingEntityId (optional, string)
-            + DocumentType (optional, string) 
+            + CreatedOrigin (optional, string)
             + CounterpartyCode (optional, string)
             + ContractId (optional, string)
             + DocumentReference (optional, string)
             + WIPAccountCode (optional, string)
-    + PropertyValue (optional, number, `12345`)
+            + CommodityCode (optional, string)
+            + Verified (optional, string)
+    + PropertyValue (optional, number, `TRADE`)
 
 + Response 200 (application/json; charset=utf-8)
     + Attributes 
@@ -1613,7 +1588,7 @@ A multipurpose object used by several endpoints
 + CommodityCodePart1: CHE,SPR (array[string])
 + CommodityCodePart2: PASO,INCT (array[string])
 + CommodityCodePart3: 55,77 (array[string])
-+ CommodityCodePart4: QWE,PTY (array[string])
++ CommodityCodePart4: QWE,PTY (array[string]
 + CommodityCodePart5: RTY,PLE (array[string])
 + TraderCode: JS,AN (array[string])
 + DepartmentCode: NAD,OMP (array[string])
