@@ -66,7 +66,7 @@ Model Header containing AccessToken
 + Response 404 (application/json; charset=utf-8)
     + Attributes (404 Response)
 
-## Document Details [/DocMan/DocumentDetails/{TradingEntityId}/{DocumentId}/]
+## Document Details [/DocMan/DocumentDetails/{DocumentId}/]
 `GET` Document Details
 
 ### Read Document Details [GET]
@@ -119,7 +119,6 @@ Model Header containing AccessToken
             AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
 
 + Parameters
-    + TradingEntityId (required, string, `JT`) ... Identify specific trading entity id.
     + DocumentId (required, number, `12345`) ... Identify specific document id.
 
 + Response 200 (application/json; charset=utf-8)
@@ -171,68 +170,6 @@ Model Header containing AccessToken
 + Response 201 (application/json; charset=utf-8)
     + Attributes 
         + Data (IndexId)
-        + Response (201 CreateResponse)
-
-+ Response 400 (application/json)
-    + Attributes (400 StatusResponse)
-
-+ Response 404 (application/json)
-    + Attributes (404 RequestIdResponse)
-
-## Document Upload [/DocMan/UploadDocument]
-`POST` Upload Document
-
-### Upload Document [POST]
-
-<b>Content-Type: multipart/form-data</b>
-|Type|Value|||||
-|--------|-----------|----|----------|-----|----------|
-|File|Attach File|||||
-|Text|Model|||||
-
-<b>Model Body</b>
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|DocumentType|Document Type|`string`|30|||
-|CounterpartyCode|Counterparty Code|`string`|10|||
-|DocumentReference|Document Reference|`string`|9|||
-|ContractId|Contract ID|`string`|10|||
-|TradingEntityId|Trading Entity ID|`string`|2|||
-|WIPAccountCode|WIP Account Code|`string`|11|||
-|VesselName|Vessel Name|`string`|30|||
-|GroupNumber|Group Number|`string`|6|||
-|CommodityCode|Pricipal Commodity Code|`string`|3|||
-
-+ Request (Content-Type: multipart/form-data; boundary=----WebKitFormBoundarygUQ89v7GZKo5U9lP)
-    + Header
-
-            AccessToken: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
-    
-    + Body
-           ------WebKitFormBoundarygUQ89v7GZKo5U9lP
-           Content-Disposition: form-data; name="0"; filename="git-process.txt"
-           Content-Type: text/plain
-           [file content goes here (might need to change the content-type if it's binary)]
-           ------WebKitFormBoundarygUQ89v7GZKo5U9lP
-
-           Content-Disposition: form-data; name="model"
-           {
-            "DocumentType":"CashDocs",
-            "CounterPartyId":null,
-            "DocumentRef":"CP1500021",
-            "ContractId":null,
-            "TradingEntityId":"JT",
-            "WipAccountId":null,
-            "VesselId":null,
-            "GroupNumber":null,
-            "CommodityId":null
-           }
-
-
-
-+ Response 201 (application/json; charset=utf-8)
-    + Attributes 
-        + Data (DocumentId)
         + Response (201 CreateResponse)
 
 + Response 400 (application/json)
@@ -1421,42 +1358,15 @@ A multipurpose object used by several endpoints
 + DocumentId: 12345 (number) 
 + DocumentName: `20180113_ADIL01_WHS.RTF` (string)
 + TradingEntityId: JT (string)
-+ LockedBy: Application AA (string)
-+ DocumentType: TRADEDOCS (string)
-+ CreatedByCode: JS (string) 
-+ CreatedDateTime: `2017-12-01T15:30:00Z` (string)
-+ LastModifiedByCode: JS (string) 
-+ LastModifiedDateTime: `2017-12-10T15:35:00Z` (string)
-+ LastModifiedOrigin: J21 (string)
-+ LastIndexedByCode: JS (string) 
-+ LastIndexedDateTime: `2017-12-10T17:30:00Z` (string)
-+ LastIndexedSetDate: `2017-12-10T00:00:00Z` (string)
-+ LastIndexedModifiedByCode: JS (string) 
-+ LastIndexedModifiedTime: `17:31` (string)
-+ Version: 2 (number)
++ DocType: TRADEDOCS (string)
 + CreatedOrigin: TRADE (string)
-+ Deleted: false (boolean)
 + CounterpartyCode: `NEWACC30.P` (string)
 + ContractId: `P00001.000` (string)
 + DocumentReference: PI1574747 (string)
 + WIPAccountCode: `0001.000` (string)
 + CommodityCode: ORG (string)
-+ CommodityOrigin: WHITE (string)
-+ CommodityGrade: FAIRTR (string)
-+ Container: Unit2 (string)
-+ VesselName: Barge 1 (string)
-+ Memo: Example Memo (string)
-+ ShortDescription: Example Short descr (string)
-+ TemplateFolder: Folder 1 (string)
-+ TemplateName: Documents Folder 1 (string)
-+ GroupNumber: 12 (number)
-+ EmailForward: `jsmith@example.com` (string)
-+ EmailSubject: Documents in folder (string)
-+ Protected: true (boolean)
 + DocumentDate: `2017-12-10T00:00:00Z` (string)
 + Verified: true (boolean)
-+ VerifiedDate: `2017-12-09T00:00:00Z` (string)
-+ VerifiedByCode: JS (string) 
 
 ## DocumentId (object)
 + DocumentId: 12345 (number)
