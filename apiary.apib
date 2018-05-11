@@ -394,6 +394,9 @@ Receive status information directly without going via the agency of the Global S
 + Response 404 (application/json)
     + Attributes (404 ServiceResponse)
 
+# Group ITAS Import Factory
+To be used by Web pages for internal projects
+TBC
 
 # Group Key Value Pair Store
 
@@ -837,47 +840,6 @@ Web services to support creating, reading and updating ITAS Codes
 List of re-usable Data Objects referenced as `object` types. Note that these endpoints are not accessable and only here for reference purposes.
 
 
-## AccountHeader [/AccountHeader]
-A multipurpose object used by several endpoints and with multiple source tables depending on context. The object described below is generic. 
-
-### AccountHeader [GET]
-The account header object is derived from multiple locations of the database depending on the the value of AccountType. All are documented below.
-<br /><br />
-<strong>AccountType: C</strong>
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|AccountType|A Single Letter Denoting Account Type|`string`|1||`C`|
-|AccountId|Account ID|`string`|11|||
-|AccountDescription|Account Description|`string`|200|||
-|EDICode|Account EDI Code|`string`|50|||
-|Status|Account Status|`string`|1||`O` or `F`|
-
-<br />
-<strong>AccountType: N</strong>
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|AccountType|A Single Letter Denoting Account Type|`string`|1||`N`|
-|AccountId|Account ID|`string`|11|||
-|AccountDescription|Account Description|`string`|200|||
-|EDICode|Account EDI Code|`string`|50|||
-|Status|Account Status|`string`|1||`O` or `F`|
-
-<br />
-<strong>AccountType: K</strong>
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|AccountType|A Single Letter Denoting Account Type|`string`|1||`K`|
-|AccountId|Account ID|`string`|11|||
-|AccountDescription|Account Description|`string`|200|||
-|EDICode|Account EDI Code|`string`|50|||
-|Status|Account Status|`string`|1||`O` or `F`|
-
-+ Response 200 (application/json; charset=utf-8)
-+ Attributes (AccountHeader)
-
 ## Contract Currency [/ContractCurrency]
 A multipurpose object used by several endpoints
 ### ContractCurrency [GET]
@@ -933,32 +895,6 @@ A multipurpose object used by several endpoints
 + Response 200 (application/json; charset=utf-8)
 + Attributes (ValuesInPnLCcy)
 
-## User Account [/UserAccount]
-A multipurpose object used by several endpoints
-### User Account [GET]
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|UserAccountId|User Account ID|`string`|3||Required|
-|UserAccountName|User Account Name|`string`|255|||
-|UserAccountDescription|User Account Description|`string`|40|||
-
-+ Response 200 (application/json; charset=utf-8)
-+ Attributes (UserAccount)
-
-## WIP Account [/WipAccount]
-A multipurpose object used by several endpoints
-### WIP Account [GET]
-
-|Property|Description|Type|Max Length|Notes|Constraint|
-|--------|-----------|----|----------|-----|----------|
-|WIPAccountId|WIP Account ID|`string`|11||Required|
-|WIPAccountDescription|WIP Account Description|`string`|60|||
-|WIPAccountType|WIP Account Type|`string`|1|||
-|Status|Status|`string`|1||`O` or `F`|
-
-+ Response 200 (application/json; charset=utf-8)
-+ Attributes (WIPAccount)
 
 # Data Structures
 
@@ -1087,34 +1023,6 @@ A multipurpose object used by several endpoints
 
 ## UserAdminBool
 + IsUserAdmin: true (boolean)
-
-## AccountHeader (object)
-+ AccountType: C (string)
-+ AccountId: 00040444.P (string)
-+ AccountDescription: Nigeria Trading Dept (string)
-+ EDICode: ABC1234 (string)
-+ Status: F (string)
-
-## AccountHeaderC (object)
-+ AccountType: C (string)
-+ AccountId: 00040444.P (string)
-+ AccountDescription: Nigeria Trading Dept (string)
-+ EDICode: ABC1234 (string)
-+ Status: F (string)
-
-## AccountHeaderN (object)
-+ AccountType: N (string)
-+ AccountId: 0510.1000 (string)
-+ AccountDescription: Computer Equipment | Cost (string)
-+ EDICode: 1234 (string)
-+ Status: O (string)
-
-## AccountHeaderK (object)
-+ AccountType: K    (string)
-+ AccountId: 5100.MEP (string)
-+ AccountDescription: Bauche Account Provisions (string)
-+ EDICode: 1234 (string)
-+ Status: O (string)
 
 ## CommodityValueList (object)
 + CommodityFullCode: CHE||CASO||47||QWE||RTY (string)
@@ -1356,12 +1264,6 @@ A multipurpose object used by several endpoints
 + ContractCurrency (array [ValuesInContractCcy])
 + FunctionalCurrency (array [ValuesInFunctionalCcy])
 
-
-## UserAccount (object)
-+ UserAccountId: JS (string)
-+ UserAccountName: JSMITH (string)
-+ UserAccountDescription: John Smith (string) 
-
 ## ValuesInContractCcy (object)
 + CurrencyCode: USD (string)
 + ConValContract: 4050 (number)
@@ -1391,9 +1293,3 @@ A multipurpose object used by several endpoints
 + FOPnL: 2500 (number)
 + FXPnL: 2900 (number)
 + MktValPnL: 3600 (number)
-
-## WIPAccount (object)
-+ WIPAccountId: 1111.MEP (required, string)
-+ WIPAccountDescription: `MEPACCRUE - East Africa Dept` (string)
-+ WIPAccountType: M (string)
-+ Status: F (string)
