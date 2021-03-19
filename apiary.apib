@@ -475,62 +475,6 @@ The Key Value Pair Store (kvpstore) allows users to store and retrieve arbitrary
         + response: deleted (string)
 
 
-
-
-# Group Physical Contract Metadata
-Retrieve metadata and other information about ITAS Physical Contracts
-
-## Query facets [/metadata/contract/{TradingEntityId}/physical/{Property}]
-Define a subset of contracts from the whole list of contracts within a trading entity using OData filters or the request body. Retrieve distinct values for each property (eg all the departments that occur at least once in that subset).
-
-### Get metadata [GET]
-
-|property|description|type|max length|notes|constraint|
-|--------|-----------|----|----------|-----|----------|
-|Department|phys01_dept|array of `string`|4|||
-|Counterparty|phys01_counterparty|array of `string`|10|||
-|Trader|phys01_trader|array of `string`|3|||
-|Commodity|phys01_commod|array of `string`|3|||
-|Terminal|phys01_terminal|array of `string`|4|||
-|ContractType|phys01_contype|array of `string`|1|||
-|ThirdParty|phys01_thirdparty|array of `boolean`|1|||
-|StockOwner|phys01_seller|array of `string`|10|||
-|ContractDate|phys01_condate|`object`||Anonymous type (see response body)||
-
-
-+ Request (application/json)
-    + Header
-
-            AccessToken:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImRlZXBhayIsInN1YiI6ImRlZXBhayIsInJvbGUiOlsiNzk5YjhhNDEtYWI0ZS00MTBhLWI5MTktYzU3ZWFlMmFlMDI5IiwiZGVlcGFrIiwiQVNQLk5FVCBJZGVudGl0eSIsIjViNDE4ODE2LTI3ZjQtNGRlOC1iNmMyLTJlZTcxNjI3ZmJmYyIsIkFkbWluIiwiU3VwZXJBZG1pbiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMjciLCJhdWQiOiI4MjkzNjk0MjJmNzA0NTIzODUxZDk4NTU2YjZkNTQyYiIsImV4cCI6MTQ1OTQzMjk0MSwibmJmIjoxNDU5NDMxMTQxfQ.JgPGxt0Ok5baKx0YMXlO6D9kUYrCWM-Kma9b9iMW8tg
-
-    + Attributes (Physicals Metadata)
-
-
-+ Parameters
-    + TradingEntityId (required, string) - identify specific trading entity
-    + Property (optional, enum[string]) - return only this group of facets
-        + Members
-            + Department (optional, string)
-            + Counterparty (optional, string)
-            + Trader (optional, string)
-            + Commodity (optional, string)
-            + Terminal (optional, string)
-            + ContractType (optional, string)
-            + ThirdParty (optional, string)
-            + StockOwner (optional, string)
-            + ContractDate (optional, string)
-
-+ Response 200 (application/json)
-    + Attributes (Physicals Metadata)
-
-+ Response 400 (application/json)
-    + Attributes (400 Response)
-
-+ Response 404 (application/json)
-    + Attributes (404 Response)
-
-
-
 # Group Codes
 Web services to support creating, reading and updating ITAS Codes
 
